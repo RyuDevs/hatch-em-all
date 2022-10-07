@@ -1,0 +1,13 @@
+.search-results-wrapper ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.search-results-wrapper ul > li {
+    list-style: none;
+    padding: .5rem;
+    width: 8rem;
+    background-color: #8783D1;
+    border-radius: .25rem;
+    margin: .5rem;
+}

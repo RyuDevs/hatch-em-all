@@ -28,6 +28,22 @@
   color: #61dafb;
 }
 
+div.mh {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.mh .content {
+  display: block;
+}
+
+.search-wrapper label {
+  display:block;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

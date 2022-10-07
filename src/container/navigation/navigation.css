@@ -1,0 +1,15 @@
+nav ul li{
+    list-style: none;
+    padding: .5rem;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    background-color: #9CDE9F;
+    color: #FCEFF9;
+}
