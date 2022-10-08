@@ -1,13 +1,60 @@
-.search-results-wrapper ul {
-    display: flex;
-    flex-wrap: wrap;
+.search-wrapper ul {
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 4px 6px 0 #8783d1;
+    z-index: 300;
+    border-radius: 0 0 25px 25px;
+    overflow-y: scroll;
+    height: 250px;
 }
 
-.search-results-wrapper ul > li {
+.search-wrapper ul > li {
     list-style: none;
     padding: .5rem;
     width: 8rem;
     background-color: #8783D1;
     border-radius: .25rem;
     margin: .5rem;
+}
+
+.search-wrapper input{
+    width: 500px;
+    border-radius: 1rem 1rem 0 0;
+    height: 40px;
+    border: 1px solid #8783d185;
+    text-align: center;
+    box-shadow: 1px 0px 6px 0 #8783d1;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
+}
+
+.search-wrapper input.active{
+    width: 500px;
+    border-radius: 1rem 1rem 0 0;
+    height: 34px;
+    border: 1px solid #8783D1;
+    text-align: center;
+}
+
+.card {
+    text-align: left;
+    padding: .7rem .7rem .7rem 1rem;
+}
+
+.card span{
+    top: -6px;
+    position: relative;
+    margin-left: .7rem;
+}
+
+.card:hover{
+    background-color: rgba(135, 131, 209, .3);
+}
+
+.card img{
+    height: 25px;
+    width: auto;
 }

@@ -14,7 +14,7 @@ const Search = ({pokemons}) => {
         if (searchtext && searchtext !== ''){
             const filtered = pokemons.filter(pokemon =>
                 {
-                    return pokemon.name.includes(searchtext);
+                    return pokemon.name.includes(searchtext.toLowerCase());
                 })
             setFilteredPokemon(filtered);
         }
@@ -23,17 +23,21 @@ const Search = ({pokemons}) => {
         }
     }, [searchtext, pokemons])
 
+
+
     return(
         <div className="mh">
             <div className="content">
             <div className="search-wrapper">
                 <label htmlFor="pokemon-search">Search for pokemons:</label>
                 <input type="search" placeholder="Suche" id="pokemon-search" onChange={handleSearch}/>
-            </div>
-            <div className="search-results-wrapper">
                 <ul>
                     {filteredPokemon.map(pokemon => {
-                        return <li key={pokemon.name}>{pokemon.name}</li>
+                        return (
+                        <div className="card" key={pokemon.name}>
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/35.png"></img>
+                            <span>{pokemon.name}</span>
+                        </div>)
                     })}
                 </ul>
             </div>

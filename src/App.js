@@ -19,7 +19,6 @@ function App() {
     }
 
     getPokemon();
-    console.log(pokemons);
   }, []);
 
 

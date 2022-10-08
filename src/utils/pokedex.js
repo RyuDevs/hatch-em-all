@@ -9,4 +9,13 @@ export default class Pokedex {
         const result = await response.json();
         return result;
     }
+
+    async getPokemon(id){
+        const response = await fetch(Endpoints.pokemons);
+        if (response.status !== 200) {
+            console.error('Error:', response.statusText);
+        }
+        const result = await response.json();
+        return result;
+    }
 }
