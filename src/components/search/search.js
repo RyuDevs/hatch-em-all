@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './search.css';
 
 const Search = ({pokemons}) => {
 
+    const [searchtext, setSearchtext] = useState('');
     const [filteredPokemon, setFilteredPokemon] = useState(pokemons);
 
     const handleSearch = ({target}) => {
-        if (!target.value && target.value !== ''){
-            setFilteredPokemon(pokemons.filter(pokemon => pokemon.name.includes(target.value)));
-        }
-        return
+        setSearchtext(target.value);
     }
+
+    useEffect(() => {
+        if (searchtext && searchtext !== ''){
+            const filtered = pokemons.filter(pokemon =>
+                {
+                    return pokemon.name.includes(searchtext);
+                })
+            setFilteredPokemon(filtered);
+        }
+        else {
+            setFilteredPokemon(pokemons);
+        }
+    }, [searchtext, pokemons])
 
     return(
         <div className="mh">
