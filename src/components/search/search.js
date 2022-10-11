@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import SearchResults from "../searchResults/searchResults";
 import './search.css';
 
-const Search = ({pokemons}) => {
+const Search = ({pokemons, speciesInfo, species}) => {
 
     const [searchtext, setSearchtext] = useState('');
+    
     const [filteredPokemon, setFilteredPokemon] = useState(pokemons);
+
 
     const handleSearch = ({target}) => {
         setSearchtext(target.value);
@@ -33,11 +36,7 @@ const Search = ({pokemons}) => {
                 <input type="search" placeholder="Suche" id="pokemon-search" onChange={handleSearch}/>
                 <ul>
                     {filteredPokemon.map(pokemon => {
-                        return (
-                        <div className="card" key={pokemon.name}>
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/35.png"></img>
-                            <span>{pokemon.name}</span>
-                        </div>)
+                        return <SearchResults pokemon={pokemon} key={pokemon.name} speciesInfo={speciesInfo}></SearchResults>
                     })}
                 </ul>
             </div>
