@@ -10,24 +10,33 @@ import Pokemon from './components/pokemon/pokemon';
 
 function App() {
   const myPokedex = useMemo(() => new Pokedex(), []);
-  const [pokemons, setPokemons] = useState(null);
+
+  const [pokemonCache, setPokemonCache] = useState(null);
+  const [speciesCache, setSpeciesCache] = useState([]);
+  const [speciesToAdd, setSpeciesToAdd] = useState(0);
+  const [language, setLanguage] = useState('de');
 
   useEffect(() => {
 
     async function getPokemon() {
       const pokeData = await myPokedex.getPokemons();
-      setPokemons(pokeData.results);
+      setPokemonCache(pokeData.results);
     }
 
     getPokemon();
   }, [myPokedex]);
 
-  const getSpecies = async (name) => {
-    const data = await myPokedex.getSpecies(name);
-    return data;
-  }
+  useEffect(() => {
+    async function getSpecies() {
+      const result = await myPokedex.getSpecies(speciesToAdd);
+      setSpeciesCache(prev => [...prev, result]);
+    }
+    if (speciesToAdd !== 0){
+      getSpecies();
+    }
+  }, [speciesToAdd, myPokedex])
 
-  if(!pokemons){
+  if(!pokemonCache){
     return (
     <div className='App'>
       <Navigation></Navigation>
@@ -39,7 +48,7 @@ function App() {
     <div className="App">
       <Navigation></Navigation>
       <Home></Home>
-      <Search pokemons={pokemons} speciesInfo={getSpecies}></Search>
+      <Search pokemonCache={pokemonCache} speciesCache={speciesCache} language={language}></Search>
       <Pokemon></Pokemon>
     </div>
   );

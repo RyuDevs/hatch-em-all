@@ -1,7 +1,7 @@
 import {useEffect, useMemo, useRef, useState} from "react";
 import ditto from "../images/ditto.png";
 
-const SearchResults = ({pokemon, speciesInfo}) => {
+const SearchResults = ({pokemon, language, isSpecies}) => {
     const pokemonImage = useRef(null);
     const pokemonName = useRef(null);
     
@@ -19,9 +19,6 @@ const SearchResults = ({pokemon, speciesInfo}) => {
         const [ entry ] = entries;
         if (entry.isIntersecting) {
             let lazyName = entry.target.textContent;
-            const data = await speciesInfo(lazyName);
-            setSpecies(data);
-            observer.unobserve(pokemonName.current);
         }
     }
 

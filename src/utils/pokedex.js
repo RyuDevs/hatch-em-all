@@ -15,8 +15,8 @@ export default class Pokedex {
         return result;
     }
 
-    async getPokemon(name){
-        const response = await fetch(Endpoints.pokemon + name);
+    async getPokemon(id){
+        const response = await fetch(Endpoints.pokemon + id);
         if (response.status !== 200) {
             console.error('Error:', response.statusText);
         }
@@ -24,8 +24,8 @@ export default class Pokedex {
         return result;
     }
 
-    async getSpecies(name){
-        const response = await fetch(Endpoints.species + name);
+    async getSpecies(id){
+        const response = await fetch(Endpoints.species + id);
         if (response.status !== 200) {
             console.error('Error:', response.statusText);
         }
