@@ -17,7 +17,9 @@ const PokemonSearchResult = ({pokemon, handleSpeciesCache, loadSpecies}) => {
             let id = entry.target.dataset.id;
             const result = await loadSpecies(id);
             handleSpeciesCache(result);
-            observer.unobserve(pokemonName.current);
+            if (pokemonName.current){
+                observer.unobserve(pokemonName.current);
+            }
         }
     }
 
