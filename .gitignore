@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#helper class do not ship
+src/utils/pokemonNameCache.js
