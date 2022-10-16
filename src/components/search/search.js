@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import SearchResults from "../searchResults/searchResults";
 import './search.css';
 
-const Search = ({pokemonCache, speciesCache, language}) => {
+const Search = ({pokemonCache, speciesCache, language, handleSpeciesCache, loadSpecies}) => {
 
     const [searchtext, setSearchtext] = useState('');
     
     const [filteredPokemon, setFilteredPokemon] = useState(pokemonCache);
-
 
     const handleSearch = ({target}) => {
         setSearchtext(target.value);
@@ -26,8 +25,6 @@ const Search = ({pokemonCache, speciesCache, language}) => {
         }
     }, [searchtext, pokemonCache])
 
-
-
     return(
         <div className="mh">
             <div className="content">
@@ -36,7 +33,7 @@ const Search = ({pokemonCache, speciesCache, language}) => {
                 <input type="search" placeholder="Suche" id="pokemon-search" onChange={handleSearch}/>
                 <ul>
                     {filteredPokemon.map(pokemon => {
-                        return <SearchResults pokemon={pokemon} key={pokemon.id} isSpecies="false"></SearchResults>
+                        return speciesCache.find(el => el.id === Number(pokemon.id)) ? <SearchResults key={pokemon.id} pokemon={speciesCache.find(el => el.id === Number(pokemon.id))} isSpecies={true} language={language}/> : <SearchResults pokemon={pokemon} key={pokemon.id} isSpecies={false} handleSpeciesCache={handleSpeciesCache} loadSpecies={loadSpecies}></SearchResults>
                     })}
                 </ul>
             </div>

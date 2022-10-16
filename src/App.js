@@ -13,7 +13,7 @@ function App() {
 
   const [pokemonCache, setPokemonCache] = useState(null);
   const [speciesCache, setSpeciesCache] = useState([]);
-  const [speciesToAdd, setSpeciesToAdd] = useState(0);
+  // const [speciesToAdd, setSpeciesToAdd] = useState([]);
   const [language, setLanguage] = useState('de');
 
   useEffect(() => {
@@ -26,15 +26,21 @@ function App() {
     getPokemon();
   }, [myPokedex]);
 
-  useEffect(() => {
-    async function getSpecies() {
-      const result = await myPokedex.getSpecies(speciesToAdd);
-      setSpeciesCache(prev => [...prev, result]);
-    }
-    if (speciesToAdd !== 0){
-      getSpecies();
-    }
-  }, [speciesToAdd, myPokedex])
+  // useEffect(() => {
+  //   console.log(`Species cache changed`);
+  //   console.log(speciesCache);
+  // }, [speciesCache]);
+
+  const handleSpeciesCache = (speciesData) =>{
+    setSpeciesCache(prev => {
+      if(!prev.find(element => element.id === speciesData.id)){
+        return [...prev, speciesData];
+      }
+      else{
+        return [...prev];
+      }
+    })
+  }
 
   if(!pokemonCache){
     return (
@@ -48,7 +54,7 @@ function App() {
     <div className="App">
       <Navigation></Navigation>
       <Home></Home>
-      <Search pokemonCache={pokemonCache} speciesCache={speciesCache} language={language}></Search>
+      <Search pokemonCache={pokemonCache} speciesCache={speciesCache} language={language} handleSpeciesCache={handleSpeciesCache} loadSpecies={myPokedex.getSpecies}></Search>
       <Pokemon></Pokemon>
     </div>
   );
