@@ -7,10 +7,12 @@ export default class Pokedex {
             console.error('Error:', response.statusText);
         }
         const result = await response.json();
-        const regexpIds = new RegExp(`(?<=/)[0-9]{1,5}`, "g");
+        const regexpIds = new RegExp(`(?:/)[0-9]{1,5}`, "g");
+        const macthIds = new RegExp(`[0-9]{1,5}`, "g");
         for (const pokemon of result.results){
             const match=pokemon.url.match(regexpIds)
-            pokemon.id = match;
+            const idMatch = match[0].match(macthIds);
+            pokemon.id = idMatch
         }
         return result;
     }
